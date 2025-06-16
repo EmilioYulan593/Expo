@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Controlador del Sistema</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #121212;
+      color: #e0e0e0;
+    }
+
+    header {
+      background-color: #01579b;
+      padding: 1.2rem;
+      text-align: center;
+      color: white;
+    }
+
+    nav {
+      background-color: #212121;
+      display: flex;
+      justify-content: center;
+      gap: 2rem;
+      padding: 0.8rem;
+    }
+
+    nav a {
+      color: #81d4fa;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    .container {
+      padding: 2rem;
+    }
+
+    .section {
+      background-color: #1e1e1e;
+      border: 1px solid #444;
+      border-radius: 8px;
+      padding: 1.5rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .section h2 {
+      color: #4fc3f7;
+    }
+
+    .log {
+      background-color: #263238;
+      padding: 1rem;
+      margin-bottom: 0.5rem;
+      border-left: 4px solid #29b6f6;
+      border-radius: 5px;
+      font-size: 0.95rem;
+    }
+
+    input, select, button {
+      width: 100%;
+      padding: 0.6rem;
+      margin-top: 0.5rem;
+      background-color: #2e2e2e;
+      color: #e0e0e0;
+      border: 1px solid #555;
+      border-radius: 4px;
+    }
+
+    button {
+      background-color: #0288d1;
+      cursor: pointer;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>Interfaz del Controlador</h1>
+    <p>Gestión central de lógica, seguridad y flujo del sistema</p>
+  </header>
+
+  <nav>
+    <a href="#">Autenticación</a>
+    <a href="#">Eventos</a>
+    <a href="#">Coordinación</a>
+    <a href="#">Logs</a>
+  </nav>
+
+  <div class="container">
+
+    <div class="section">
+      <h2>Autenticación de Usuarios</h2>
+      <form onsubmit="autenticarUsuario(event)">
+        <label>Usuario:</label>
+        <input type="text" placeholder="Ej: admin123" required>
+        <label>Contraseña:</label>
+        <input type="password" placeholder="••••••••" required>
+        <button type="submit">Iniciar Sesión</button>
+      </form>
+    </div>
+
+    <div class="section">
+      <h2>Procesamiento de Eventos</h2>
+      <form onsubmit="procesarEvento(event)">
+        <label>Tipo de evento:</label>
+        <select required>
+          <option value="">Seleccionar evento...</option>
+          <option value="vista">Cambio de vista</option>
+          <option value="evaluacion">Iniciar evaluación</option>
+          <option value="tarea">Asignación de tarea</option>
+        </select>
+        <label>Detalle:</label>
+        <input type="text" placeholder="Ej: Mostrar panel de tareas">
+        <button type="submit">Procesar Evento</button>
+      </form>
+    </div>
+
+    <div class="section">
+      <h2>Coordinación del Sistema</h2>
+      <p>📌 <strong>Vista actual:</strong> Panel de supervisión</p>
+      <p>📌 <strong>Modelo consultado:</strong> Actividades de Juan Pérez</p>
+      <p>📌 <strong>Estado sincronizado:</strong> Última tarea registrada hace 5 minutos</p>
+    </div>
+
+    <div class="section">
+      <h2>Registro de Acciones</h2>
+      <div class="log">✅ Usuario "admin123" autenticado correctamente</div>
+      <div class="log">⚙️ Evento "Cambio de vista" procesado</div>
+      <div class="log">📤 Notificación enviada a la vista de evaluación</div>
+      <div class="log">🔄 Modelo actualizado con datos de productividad</div>
+    </div>
+
+  </div>
+
+  <script>
+    function autenticarUsuario(e) {
+      e.preventDefault();
+      alert("Autenticación exitosa. Redirigiendo al panel...");
+    }
+
+    function procesarEvento(e) {
+      e.preventDefault();
+      alert("Evento procesado y enviado al modelo y vista.");
+    }
+  </script>
+
+</body>
+</html>
+
+</html>

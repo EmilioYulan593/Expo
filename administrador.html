@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Panel del Administrador</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #1b1b1b;
+      color: #e0e0e0;
+    }
+
+    header {
+      background-color: #0d47a1;
+      padding: 1rem;
+      text-align: center;
+      color: white;
+    }
+
+    nav {
+      background-color: #2b2b2b;
+      display: flex;
+      justify-content: space-around;
+      padding: 0.8rem;
+    }
+
+    nav a {
+      color: #90caf9;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    .container {
+      padding: 2rem;
+    }
+
+    .section {
+      background-color: #262626;
+      border: 1px solid #444;
+      border-radius: 8px;
+      padding: 1.5rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .section h2 {
+      color: #64b5f6;
+      margin-bottom: 1rem;
+    }
+
+    .employee {
+      background-color: #1e1e1e;
+      border: 1px solid #333;
+      padding: 1rem;
+      margin-bottom: 0.7rem;
+      border-radius: 6px;
+    }
+
+    .employee strong {
+      color: #bbdefb;
+    }
+
+    .task-form input, .task-form select {
+      padding: 0.5rem;
+      margin: 0.3rem 0;
+      width: 100%;
+      background-color: #2c2c2c;
+      color: #e0e0e0;
+      border: 1px solid #555;
+      border-radius: 4px;
+    }
+
+    .task-form button {
+      margin-top: 0.5rem;
+      padding: 0.5rem 1rem;
+      background-color: #0d47a1;
+      color: white;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+
+    .notification {
+      background-color: #37474f;
+      padding: 0.8rem;
+      border-left: 5px solid #2196f3;
+      margin-bottom: 0.5rem;
+    }
+
+    .status {
+      font-weight: bold;
+      color: #81c784;
+    }
+
+    .offline {
+      color: #ef5350;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>Panel de Administración - Supervisor</h1>
+    <p>Control central de monitoreo y evaluación</p>
+  </header>
+
+  <nav>
+    <a href="#">Empleados</a>
+    <a href="#">Asignar Tareas</a>
+    <a href="#">Evaluaciones</a>
+    <a href="#">Notificaciones</a>
+  </nav>
+
+  <div class="container">
+
+    <div class="section">
+      <h2>Estado de Conexión</h2>
+      <div class="employee">
+        👨‍💻 <strong>Emilio Yulan</strong> — <span class="status">En línea</span>
+      </div>
+      <div class="employee">
+        👩‍💻 <strong>Nicolas maduro</strong> — <span class="offline">Desconectado</span>
+      </div>
+      <div class="employee">
+        👨‍💻 <strong>Pedro Sánchez</strong> — <span class="status">En línea</span>
+      </div>
+    </div>
+
+    <div class="section">
+      <h2>Asignar Nueva Tarea</h2>
+      <form class="task-form" onsubmit="asignarTarea(event)">
+        <label>Empleado:</label>
+        <select required>
+          <option value="">Seleccionar...</option>
+          <option value="juan">Juan Pérez</option>
+          <option value="lucia">Lucía Gómez</option>
+          <option value="pedro">Pedro Sánchez</option>
+        </select>
+        <label>Descripción de tarea:</label>
+        <input type="text" placeholder="Ej. Revisar reporte mensual" required>
+        <button type="submit">Asignar</button>
+      </form>
+    </div>
+
+    <div class="section">
+      <h2>Evaluaciones de Desempeño</h2>
+      <div c

@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Monitoreo Empresarial - Inicio</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #121212;
+      color: #ffffff;
+    }
+
+    header {
+      background-color: #0d47a1;
+      padding: 2rem 1rem;
+      text-align: center;
+    }
+
+    header h1 {
+      font-size: 2rem;
+      color: #ffffff;
+      margin-bottom: 0.5rem;
+    }
+
+    header p {
+      color: #bbdefb;
+      font-size: 1rem;
+    }
+
+    .container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 2rem;
+      padding: 4rem 2rem;
+      flex-wrap: wrap;
+    }
+
+    .card {
+      background-color: #1e1e1e;
+      border: 1px solid #333;
+      border-radius: 10px;
+      width: 280px;
+      height: 200px;
+      text-align: center;
+      padding: 1.5rem;
+      transition: transform 0.3s, box-shadow 0.3s;
+      text-decoration: none;
+      color: #e0e0e0;
+    }
+
+    .card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 0 15px rgba(33, 150, 243, 0.5);
+    }
+
+    .card h2 {
+      color: #4fc3f7;
+      margin-bottom: 1rem;
+    }
+
+    .card p {
+      font-size: 0.95rem;
+      color: #b0bec5;
+    }
+
+    footer {
+      text-align: center;
+      padding: 1rem;
+      background-color: #0d47a1;
+      color: #ccc;
+      font-size: 0.9rem;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>Sistema de Monitoreo Empresarial</h1>
+    <p>Optimización del seguimiento de empleados en teletrabajo</p>
+  </header>
+
+  <div class="container">
+    <a href="trabajador.html" class="card">
+      <h2>Perspectiva Trabajador</h2>
+      <p>Visualiza tus tareas, marca tu actividad y consulta tu rendimiento.</p>
+    </a>
+
+    <a href="administrador.html" class="card">
+      <h2>Perspectiva Administrador</h2>
+      <p>Gestiona empleados, asigna tareas, evalúa desempeño y controla estados.</p>
+    </a>
+
+    <a href="controlador.html" class="card">
+      <h2>Perspectiva Controlador</h2>
+      <p>Autentica usuarios, procesa eventos y sincroniza vista y modelo.</p>
+    </a>
+  </div>
+
+  <footer>
+    © 2025 Monitoreo Empresarial | BetoxTech
+  </footer>
+
+</body>
+</html>
