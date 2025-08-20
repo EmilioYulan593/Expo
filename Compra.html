@@ -1,0 +1,625 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bananox - Marketplace de Bananos Premium</title>
+  <style>
+    :root {
+      --blanco: #ffffff;
+      --amarillo-claro: #fff8d6;
+      --amarillo: #ffeb3b;
+      --amarillo-oscuro: #f4c20d;
+      --amarillo-intenso: #f9a825;
+      --texto: #333;
+      --verde-banano: #8bc34a;
+      --gris-claro: #f5f5f5;
+      --rojo-oferta: #ff4444;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background-color: var(--gris-claro);
+      color: var(--texto);
+      line-height: 1.6;
+    }
+
+    header {
+      background: linear-gradient(90deg, var(--amarillo-intenso), var(--amarillo-oscuro));
+      padding: 1rem 2rem;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+    }
+
+    .header-content {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .logo {
+      color: white;
+      font-size: 2rem;
+      font-weight: bold;
+      text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+    }
+
+    .search-container {
+      flex: 1;
+      max-width: 500px;
+      margin: 0 2rem;
+      position: relative;
+    }
+
+    .search-bar {
+      width: 100%;
+      padding: 12px 50px 12px 15px;
+      border: none;
+      border-radius: 25px;
+      font-size: 1rem;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    }
+
+    .search-btn {
+      position: absolute;
+      right: 5px;
+      top: 50%;
+      transform: translateY(-50%);
+      background: var(--amarillo-intenso);
+      border: none;
+      padding: 8px 15px;
+      border-radius: 20px;
+      color: white;
+      cursor: pointer;
+    }
+
+    .user-actions {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .user-actions button {
+      background: white;
+      border: none;
+      padding: 8px 16px;
+      border-radius: 20px;
+      cursor: pointer;
+      font-weight: bold;
+      color: var(--amarillo-intenso);
+      transition: all 0.3s ease;
+    }
+
+    .user-actions button:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+    }
+
+    .promo-banner {
+      background: linear-gradient(135deg, var(--amarillo), var(--amarillo-claro));
+      padding: 1rem;
+      text-align: center;
+      border-bottom: 3px solid var(--amarillo-oscuro);
+    }
+
+    .promo-text {
+      font-size: 1.1rem;
+      font-weight: bold;
+      color: var(--texto);
+    }
+
+    .categories-nav {
+      background: white;
+      padding: 1rem 2rem;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    }
+
+    .categories-content {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      gap: 2rem;
+      align-items: center;
+    }
+
+    .category-btn {
+      background: none;
+      border: none;
+      padding: 8px 16px;
+      border-radius: 20px;
+      cursor: pointer;
+      font-weight: bold;
+      color: var(--texto);
+      transition: all 0.3s ease;
+    }
+
+    .category-btn:hover, .category-btn.active {
+      background: var(--amarillo-claro);
+      color: var(--amarillo-intenso);
+    }
+
+    .main-content {
+      max-width: 1200px;
+      margin: 2rem auto;
+      padding: 0 2rem;
+    }
+
+    .featured-section {
+      background: white;
+      border-radius: 15px;
+      padding: 2rem;
+      margin-bottom: 2rem;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    }
+
+    .section-title {
+      font-size: 1.8rem;
+      color: var(--amarillo-intenso);
+      margin-bottom: 1.5rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .productos-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .producto-card {
+      background: white;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+      transition: all 0.3s ease;
+      position: relative;
+      border: 1px solid #eee;
+    }
+
+    .producto-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+    }
+
+    .producto-imagen {
+      height: 180px;
+      background: linear-gradient(135deg, var(--amarillo-claro), var(--amarillo));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 4rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .producto-info {
+      padding: 1rem;
+    }
+
+    .producto-titulo {
+      font-size: 1rem;
+      color: var(--texto);
+      margin-bottom: 0.5rem;
+      font-weight: 600;
+      line-height: 1.3;
+    }
+
+    .producto-descripcion {
+      font-size: 0.85rem;
+      color: #666;
+      margin-bottom: 0.8rem;
+      line-height: 1.4;
+    }
+
+    .precio-container {
+      margin-bottom: 1rem;
+    }
+
+    .precio-actual {
+      font-size: 1.4rem;
+      font-weight: bold;
+      color: var(--amarillo-intenso);
+    }
+
+    .precio-anterior {
+      font-size: 1rem;
+      color: #999;
+      text-decoration: line-through;
+      margin-left: 0.5rem;
+    }
+
+    .descuento {
+      background: var(--rojo-oferta);
+      color: white;
+      padding: 2px 8px;
+      border-radius: 12px;
+      font-size: 0.8rem;
+      font-weight: bold;
+      margin-left: 0.5rem;
+    }
+
+    .envio-info {
+      font-size: 0.8rem;
+      color: var(--verde-banano);
+      font-weight: bold;
+      margin-bottom: 0.5rem;
+    }
+
+    .rating {
+      display: flex;
+      align-items: center;
+      gap: 0.3rem;
+      margin-bottom: 1rem;
+      font-size: 0.85rem;
+    }
+
+    .stars {
+      color: #ffc107;
+    }
+
+    .btn-comprar {
+      width: 100%;
+      padding: 10px;
+      background: linear-gradient(45deg, var(--amarillo-intenso), var(--amarillo-oscuro));
+      color: white;
+      border: none;
+      border-radius: 6px;
+      font-weight: bold;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      font-size: 0.9rem;
+    }
+
+    .btn-comprar:hover {
+      transform: scale(1.02);
+      box-shadow: 0 4px 12px rgba(249, 168, 37, 0.4);
+    }
+
+    .badge {
+      position: absolute;
+      top: 10px;
+      left: 10px;
+      background: var(--verde-banano);
+      color: white;
+      padding: 4px 8px;
+      border-radius: 12px;
+      font-size: 0.7rem;
+      font-weight: bold;
+    }
+
+    .oferta-badge {
+      background: var(--rojo-oferta);
+    }
+
+    .pagination {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 1rem;
+      margin: 3rem 0;
+    }
+
+    .pagination button {
+      padding: 8px 16px;
+      border: 1px solid var(--amarillo-oscuro);
+      background: white;
+      color: var(--amarillo-intenso);
+      border-radius: 6px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .pagination button:hover, .pagination button.active {
+      background: var(--amarillo-intenso);
+      color: white;
+    }
+
+    .float-animation {
+      animation: float 3s ease-in-out infinite;
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0px) rotate(0deg); }
+      50% { transform: translateY(-10px) rotate(5deg); }
+    }
+
+    .ripple {
+      animation: ripple 2s infinite;
+    }
+
+    @keyframes ripple {
+      0% { transform: scale(1); }
+      50% { transform: scale(1.05); }
+      100% { transform: scale(1); }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="header-content">
+      <div class="logo">Bananox</div>
+      <div class="search-container">
+        <input type="text" class="search-bar" placeholder="Buscar bananos premium, orgánicos, cavendish...">
+        <button class="search-btn">Buscar</button>
+      </div>
+      <div class="user-actions">
+        <button>Favoritos</button>
+        <button>Mi cuenta</button>
+        <button>Carrito (0)</button>
+      </div>
+    </div>
+  </header>
+
+  <div class="promo-banner">
+    <div class="promo-text">
+      SÚPER OFERTA! Envío GRATIS en compras mayores a $25 | 15% OFF pagando con Tarjeta Bananox
+    </div>
+  </div>
+
+  <nav class="categories-nav">
+    <div class="categories-content">
+      <button class="category-btn active">Todas las categorías</button>
+      <button class="category-btn">Bananos Frescos</button>
+      <button class="category-btn">Orgánicos</button>
+      <button class="category-btn">Paquetes Familiares</button>
+      <button class="category-btn">Premium</button>
+      <button class="category-btn">Ofertas</button>
+    </div>
+  </nav>
+
+  <main class="main-content">
+    <section class="featured-section">
+      <h2 class="section-title">Los más vendidos</h2>
+      <div class="productos-grid">
+        
+        <div class="producto-card">
+          <div class="badge">BESTSELLER</div>
+          <div class="producto-imagen">
+            <span class="float-animation">B</span>
+          </div>
+          <div class="producto-info">
+            <h3 class="producto-titulo">Bananos Cavendish Premium - 1 lb</h3>
+            <p class="producto-descripcion">Bananos frescos importados directamente de Ecuador. Perfectos para el desayuno y snacks saludables.</p>
+            <div class="precio-container">
+              <span class="precio-actual">$2.49</span>
+              <span class="precio-anterior">$2.99</span>
+              <span class="descuento">16% OFF</span>
+            </div>
+            <div class="envio-info">ENVÍO GRATIS</div>
+            <div class="rating">
+              <span class="stars">★★★★★</span>
+              <span>(127 reseñas)</span>
+            </div>
+            <button class="btn-comprar">Agregar al carrito</button>
+          </div>
+        </div>
+
+        <div class="producto-card">
+          <div class="badge oferta-badge">OFERTA</div>
+          <div class="producto-imagen">
+            <span class="ripple">BP</span>
+          </div>
+          <div class="producto-info">
+            <h3 class="producto-titulo">Pack Familiar Bananos - 3 lb</h3>
+            <p class="producto-descripcion">Paquete ideal para familias. Bananos maduros perfectos, seleccionados cuidadosamente para máxima calidad.</p>
+            <div class="precio-container">
+              <span class="precio-actual">$6.99</span>
+              <span class="precio-anterior">$8.99</span>
+              <span class="descuento">22% OFF</span>
+            </div>
+            <div class="envio-info">ENVÍO GRATIS</div>
+            <div class="rating">
+              <span class="stars">★★★★★</span>
+              <span>(89 reseñas)</span>
+            </div>
+            <button class="btn-comprar">Agregar al carrito</button>
+          </div>
+        </div>
+
+        <div class="producto-card">
+          <div class="badge">ORGÁNICO</div>
+          <div class="producto-imagen">
+            <span class="float-animation">ORG</span>
+          </div>
+          <div class="producto-info">
+            <h3 class="producto-titulo">Bananos Orgánicos Certificados - 2 lb</h3>
+            <p class="producto-descripcion">100% orgánicos, cultivados sin pesticidas. Certificación USDA Organic. Sabor natural incomparable.</p>
+            <div class="precio-container">
+              <span class="precio-actual">$5.49</span>
+              <span class="precio-anterior">$6.49</span>
+              <span class="descuento">15% OFF</span>
+            </div>
+            <div class="envio-info">ENVÍO GRATIS</div>
+            <div class="rating">
+              <span class="stars">★★★★★</span>
+              <span>(203 reseñas)</span>
+            </div>
+            <button class="btn-comprar">Agregar al carrito</button>
+          </div>
+        </div>
+
+        <div class="producto-card">
+          <div class="badge">PREMIUM</div>
+          <div class="producto-imagen">
+            <span class="ripple">GOLD</span>
+          </div>
+          <div class="producto-info">
+            <h3 class="producto-titulo">Bananos Gold Premium - 1.5 lb</h3>
+            <p class="producto-descripcion">La variedad más dulce y cremosa. Bananos premium madurados en cámaras especiales para máximo sabor.</p>
+            <div class="precio-container">
+              <span class="precio-actual">$4.99</span>
+              <span class="precio-anterior">$5.99</span>
+              <span class="descuento">17% OFF</span>
+            </div>
+            <div class="envio-info">ENVÍO GRATIS</div>
+            <div class="rating">
+              <span class="stars">★★★★★</span>
+              <span>(156 reseñas)</span>
+            </div>
+            <button class="btn-comprar">Agregar al carrito</button>
+          </div>
+        </div>
+
+        <div class="producto-card">
+          <div class="badge">NUEVO</div>
+          <div class="producto-imagen">
+            <span class="float-animation">SM</span>
+          </div>
+          <div class="producto-info">
+            <h3 class="producto-titulo">Bananos para Smoothies - 2.5 lb</h3>
+            <p class="producto-descripcion">Bananos especialmente seleccionados para batidos y smoothies. Textura perfecta y sabor concentrado.</p>
+            <div class="precio-container">
+              <span class="precio-actual">$5.99</span>
+            </div>
+            <div class="envio-info">ENVÍO GRATIS</div>
+            <div class="rating">
+              <span class="stars">★★★★★</span>
+              <span>(74 reseñas)</span>
+            </div>
+            <button class="btn-comprar">Agregar al carrito</button>
+          </div>
+        </div>
+
+        <div class="producto-card">
+          <div class="badge oferta-badge">LIQUIDACIÓN</div>
+          <div class="producto-imagen">
+            <span class="ripple">MEGA</span>
+          </div>
+          <div class="producto-info">
+            <h3 class="producto-titulo">Mega Pack Bananos - 5 lb</h3>
+            <p class="producto-descripcion">¡El mejor precio por libra! Ideal para comercios, restaurantes o familias grandes. Calidad garantizada.</p>
+            <div class="precio-container">
+              <span class="precio-actual">$9.99</span>
+              <span class="precio-anterior">$14.99</span>
+              <span class="descuento">33% OFF</span>
+            </div>
+            <div class="envio-info">ENVÍO GRATIS</div>
+            <div class="rating">
+              <span class="stars">★★★★★</span>
+              <span>(312 reseñas)</span>
+            </div>
+            <button class="btn-comprar">Agregar al carrito</button>
+          </div>
+        </div>
+
+        <div class="producto-card">
+          <div class="badge">BABY</div>
+          <div class="producto-imagen">
+            <span class="float-animation">BABY</span>
+          </div>
+          <div class="producto-info">
+            <h3 class="producto-titulo">Bananos Baby (Mini) - 1 lb</h3>
+            <p class="producto-descripcion">Bananos pequeños y dulces, perfectos para niños y snacks. Más dulces que los bananos regulares.</p>
+            <div class="precio-container">
+              <span class="precio-actual">$3.49</span>
+              <span class="precio-anterior">$3.99</span>
+              <span class="descuento">13% OFF</span>
+            </div>
+            <div class="envio-info">ENVÍO GRATIS</div>
+            <div class="rating">
+              <span class="stars">★★★★★</span>
+              <span>(98 reseñas)</span>
+            </div>
+            <button class="btn-comprar">Agregar al carrito</button>
+          </div>
+        </div>
+
+        <div class="producto-card">
+          <div class="badge">PLATANO</div>
+          <div class="producto-imagen">
+            <span class="ripple">PLATANO</span>
+          </div>
+          <div class="producto-info">
+            <h3 class="producto-titulo">Plátanos Verdes para Cocinar - 2 lb</h3>
+            <p class="producto-descripcion">Plátanos verdes ideales para patacones, mangú y platos tradicionales. Frescos y de excelente calidad.</p>
+            <div class="precio-container">
+              <span class="precio-actual">$3.99</span>
+            </div>
+            <div class="envio-info">ENVÍO GRATIS</div>
+            <div class="rating">
+              <span class="stars">★★★★★</span>
+              <span>(167 reseñas)</span>
+            </div>
+            <button class="btn-comprar">Agregar al carrito</button>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <div class="pagination">
+      <button>← Anterior</button>
+      <button class="active">1</button>
+      <button>2</button>
+      <button>3</button>
+      <button>4</button>
+      <button>5</button>
+      <button>Siguiente →</button>
+    </div>
+  </main>
+
+  <script>
+    // Animaciones y efectos interactivos
+    document.addEventListener('DOMContentLoaded', function() {
+      // Efecto hover en las tarjetas
+      const cards = document.querySelectorAll('.producto-card');
+      cards.forEach(card => {
+        card.addEventListener('mouseenter', function() {
+          this.style.transform = 'translateY(-8px) scale(1.02)';
+        });
+        
+        card.addEventListener('mouseleave', function() {
+          this.style.transform = 'translateY(0) scale(1)';
+        });
+      });
+
+      // Efecto click en botones de comprar
+      const buyButtons = document.querySelectorAll('.btn-comprar');
+      buyButtons.forEach(button => {
+        button.addEventListener('click', function() {
+          const originalText = this.textContent;
+          this.textContent = '¡Agregado!';
+          this.style.background = 'var(--verde-banano)';
+          
+          setTimeout(() => {
+            this.textContent = originalText;
+            this.style.background = 'linear-gradient(45deg, var(--amarillo-intenso), var(--amarillo-oscuro))';
+          }, 2000);
+        });
+      });
+
+      // Efectos de búsqueda
+      const searchBar = document.querySelector('.search-bar');
+      searchBar.addEventListener('focus', function() {
+        this.style.transform = 'scale(1.02)';
+        this.style.boxShadow = '0 4px 20px rgba(249, 168, 37, 0.3)';
+      });
+      
+      searchBar.addEventListener('blur', function() {
+        this.style.transform = 'scale(1)';
+        this.style.boxShadow = '0 2px 10px rgba(0,0,0,0.1)';
+      });
+
+      // Navegación de categorías
+      const categoryButtons = document.querySelectorAll('.category-btn');
+      categoryButtons.forEach(button => {
+        button.addEventListener('click', function() {
+          categoryButtons.forEach(btn => btn.classList.remove('active'));
+          this.classList.add('active');
+        });
+      });
+    });
+  </script>
+</body>
+</html>
