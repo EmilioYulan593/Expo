@@ -2,9 +2,20 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8">
-  <title>Monitoreo Empresarial - Inicio</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bananox - Comercio de Banano</title>
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+   <link href="betox.css" rel="stylesheet">
   <style>
+    :root {
+      --blanco: #ffffff;
+      --amarillo-claro: #fff8d6;
+      --amarillo: #ffffff;
+      --amarillo-oscuro: #f4c20d;
+      --amarillo-intenso: #f9a825;
+      --texto: #333;
+    }
+
     * {
       margin: 0;
       padding: 0;
@@ -13,100 +24,212 @@
 
     body {
       font-family: 'Segoe UI', sans-serif;
-      background-color: #121212;
-      color: #ffffff;
+      background-color: var(--blanco);
+      color: var(--texto);
+      line-height: 1.6;
     }
 
     header {
-      background-color: #0d47a1;
-      padding: 2rem 1rem;
-      text-align: center;
+      background-color: var(--amarillo);
+      padding: 1rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
     }
 
     header h1 {
-      font-size: 2rem;
-      color: #ffffff;
-      margin-bottom: 0.5rem;
+      color: var(--texto);
     }
 
-    header p {
-      color: #bbdefb;
-      font-size: 1rem;
+    nav {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex: 1;
     }
 
-    .container {
+    nav a {
+      margin: 0 1rem;
+      text-decoration: none;
+      color: var(--texto);
+      font-weight: bold;
+    }
+
+    .btns-header {
+      display: flex;
+      align-items: center;
+    }
+
+    .btns-header button {
+      margin-left: 1rem;
+      padding: 0.5rem 1rem;
+      border: none;
+      background-color: var(--amarillo-intenso);
+      color: white;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    .bienvenida {
+      position: relative;
+      height: 90vh;
       display: flex;
       justify-content: center;
       align-items: center;
-      gap: 2rem;
+      color: white;
+      text-align: center;
+      overflow: hidden;
+    }
+
+    .bienvenida video {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      top: 0;
+      left: 0;
+      z-index: -2;
+    }
+
+    .bienvenida::after {
+      content: "";
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0,0,0,0.6);
+      z-index: -1;
+    }
+
+    .bienvenida h1 {
+      font-size: 3rem;
+    }
+
+    .seccion {
       padding: 4rem 2rem;
+    }
+
+    .mision-vision {
+      display: flex;
       flex-wrap: wrap;
     }
 
-    .card {
-      background-color: #1e1e1e;
-      border: 1px solid #333;
-      border-radius: 10px;
-      width: 280px;
-      height: 200px;
+    .mision, .vision {
+      flex: 1;
+      padding: 2rem;
+      min-width: 300px;
+    }
+
+    .mision {
+      background-color: var(--amarillo-claro);
+    }
+
+    .vision {
+      background-color: var(--amarillo-oscuro);
+      color: white;
+    }
+
+    .sponsors {
+      background-color: var(--amarillo);
       text-align: center;
-      padding: 1.5rem;
-      transition: transform 0.3s, box-shadow 0.3s;
-      text-decoration: none;
-      color: #e0e0e0;
+      padding: 4rem 2rem;
     }
 
-    .card:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 0 15px rgba(33, 150, 243, 0.5);
+    .sponsors-logos img {
+      width: 100px;
+      margin: 1rem;
+      filter: grayscale(100%);
     }
 
-    .card h2 {
-      color: #4fc3f7;
-      margin-bottom: 1rem;
-    }
-
-    .card p {
-      font-size: 0.95rem;
-      color: #b0bec5;
+    .pene {
+      max-width: 200px;
+      height: auto;
     }
 
     footer {
+      background-color: var(--amarillo-intenso);
+      color: white;
       text-align: center;
       padding: 1rem;
-      background-color: #0d47a1;
-      color: #ccc;
-      font-size: 0.9rem;
+    }
+
+    @media screen and (max-width: 768px) {
+      header {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+      }
+
+      nav {
+        margin-top: 1rem;
+        justify-content: center;
+      }
+
+      .btns-header {
+        margin-top: 1rem;
+        justify-content: center;
+      }
+
+      .mision-vision {
+        flex-direction: column;
+      }
+      
     }
   </style>
 </head>
 <body>
 
   <header>
-    <h1>Sistema de Monitoreo Empresarial</h1>
-    <p>Optimización del seguimiento de empleados en teletrabajo</p>
+    <h1>Bananox</h1>
+    <nav>
+      <a href="#">Inicio</a>
+      <a href="#misionvision">Misión y Visión</a>
+      <a href="https://www.instagram.com/betoxyln/">Ceo</a>
+    </nav>
+    <div class="btns-header">
+      <a href="registrarse.html"> <button>Registrarse</button>   </a>
+      <a href="iniciaresion.php"> <button>Iniciar Sesión</button> </a>
+    </div>
   </header>
 
-  <div class="container">
-    <a href="trabajador.html" class="card">
-      <h2>Perspectiva Trabajador</h2>
-      <p>Visualiza tus tareas, marca tu actividad y consulta tu rendimiento.</p>
-    </a>
+  <section class="bienvenida" data-aos="fade-up">
+    <video autoplay muted loop>
+      <source src="4752348-hd_1920_1080_30fps.mp4" type="video/mp4">
+    </video>
+    <div>
+      <h1 class="amarillo">Bienvenido a Bananox</h1>
+      <p>El comercio ecuatoriano de banano que conecta el campo con el mundo</p>
+    </div>
+  </section>
 
-    <a href="administrador.html" class="card">
-      <h2>Perspectiva Administrador</h2>
-      <p>Gestiona empleados, asigna tareas, evalúa desempeño y controla estados.</p>
-    </a>
-
-    <a href="controlador.html" class="card">
-      <h2>Perspectiva Controlador</h2>
-      <p>Autentica usuarios, procesa eventos y sincroniza vista y modelo.</p>
-    </a>
-  </div>
+  <section class="seccion mision-vision" id="misionvision">
+    <div class="mision" data-aos="fade-right">
+      <h2>Misión</h2>
+      <p>Proveer banano de excelente calidad a nivel nacional e internacional, apoyando a agricultores locales y fomentando prácticas sostenibles.</p>
+      <br>
+      <img class="pene" src="BANANO 1.png" alt="Imagen de banano para misión">
+    </div>
+    <div class="vision" data-aos="fade-left">
+      <h2>Visión</h2>
+      <p>Convertirnos en la marca líder en exportación de banano en Latinoamérica, reconocida por su calidad, responsabilidad social y ambiental.</p>
+      <br>
+      <img class="pene" src="BANANO 2.png" alt="Imagen de banano para visión">
+    </div>
+  </section>
 
   <footer>
-    © 2025 Monitoreo Empresarial | BetoxTech
+    <p>&copy; 2025 Bananox. Todos los derechos reservados.</p>
   </footer>
+
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  <script>
+    AOS.init({
+      duration: 1000,
+      once: true
+    });
+  </script>
 
 </body>
 </html>

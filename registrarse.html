@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Registro - Bananox</title>
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    body, html {
+      height: 100%;
+      overflow-x: hidden;
+    }
+
+    .video-background {
+      position: fixed;
+      top: 0;
+      left: 0;
+      min-width: 100%;
+      min-height: 100%;
+      z-index: -1;
+      filter: brightness(0.4) blur(4px);
+      object-fit: cover;
+    }
+
+    .back-button {
+      position: fixed;
+      top: 20px;
+      left: 20px;
+      z-index: 2;
+      background-color: #e0b400;
+      color: white;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 5px;
+      font-size: 14px;
+      cursor: pointer;
+      transition: background-color 0.3s ease, transform 0.2s ease;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+    }
+
+    .back-button:hover {
+      background-color: #c89f00;
+      transform: translateY(-2px);
+    }
+
+    .form-container {
+      position: relative;
+      z-index: 1;
+      max-width: 400px;
+      margin: 100px auto;
+      background-color: rgba(255, 255, 255, 0.9);
+      padding: 40px;
+      border-radius: 10px;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+      animation: fadeIn 1s ease-in-out;
+    }
+
+    .form-container h2 {
+      text-align: center;
+      margin-bottom: 20px;
+      color: #e0b400;
+    }
+
+    .form-container input {
+      width: 100%;
+      padding: 12px;
+      margin: 10px 0;
+      border: 1px solid #e0b400;
+      border-radius: 5px;
+      font-size: 16px;
+    }
+
+    .form-container button {
+      width: 100%;
+      background-color: #e0b400;
+      color: white;
+      padding: 12px;
+      border: none;
+      border-radius: 5px;
+      font-size: 16px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    .form-container button:hover {
+      background-color: #c89f00;
+    }
+
+    @keyframes fadeIn {
+      from {opacity: 0; transform: translateY(20px);}
+      to {opacity: 1; transform: translateY(0);}
+    }
+  </style>
+   
+</head>
+<body>
+
+  <!-- Botón Regresar -->
+  <a href="index.html"><button class="back-button" onclick="history.back()">← Regresar</button>  </a>
+
+  <!-- Fondo de video -->
+  <video autoplay muted loop class="video-background">
+    <source src="136467-764399899_medium.mp4" type="video/webm">
+    Tu navegador no soporta el video de fondo.
+  </video>
+
+  <!-- Formulario -->
+  <div class="form-container" data-aos="zoom-in">
+    <h2>Registrarse en Bananox</h2>
+<form method="POST" action="procesar_registro.php"> 
+      <input type="text" name="nombre_completo" placeholder="Nombre completo" required>
+<input type="email" name="email" placeholder="Correo electrónico" required>
+<input type="password" name="password" placeholder="Contraseña" required>
+<input type="password" name="confirmar_password" placeholder="Confirmar contraseña" required>
+      <button type="submit">Crear cuenta</button>
+    </form>
+  </div>
+
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  <script>
+    AOS.init();
+  </script>
+</body>
+</html>
